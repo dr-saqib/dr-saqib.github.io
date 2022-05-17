@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <meta http-equiv="refresh" content="3; url=https://dr-saqib.github.io/" />
+    
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
   Syed M. Usman Shirazi
 
 
-  | Page not found
+  | Standardization ado for Stata
 
 </title>
 <meta name="description" content="Daniel Bischof's webpage. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -38,7 +38,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧐</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/404.html">
+<link rel="canonical" href="/blog/2015/STATAStandardization/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -112,7 +112,7 @@
           </li>
           
           <!-- Blog -->
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/blog/">
               blog
               
@@ -201,17 +201,29 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
+
+<div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Page not found</h1>
-    <p class="post-description">Looks like there has been a mistake. Nothing exists here.</p>
+    <h1 class="post-title">Standardization ado for Stata</h1>
+    <p class="post-meta">August 6, 2015</p>
   </header>
 
-  <article>
-    <p>You will be redirected to the main page within 3 seconds. If not redirected, please click <a href="https://dr-saqib.github.io/">here</a>.</p>
+  <article class="post-content">
+    <p>I often want to standardize my variables before using them in models. Especially if a variable either is heavily right-skewed then I like to log standardize the variable; e.g. number of protesters) or the coefficient of variable is uninterpretable anyways (then I tend to follow Gelman’s (2008) approach; e.g. age and age^2 which results in very small coefficients in a regression). So far I generated such standardizations myself, e.g.:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gen <span class="nv">log_protesters</span><span class="o">=</span>log<span class="o">(</span>protesters+1<span class="o">)</span>
+</code></pre></div></div>
+<p>However, since I tend to be lazy and try to minimize the amount of syntax I produce, I programmed a small program called standard2 which creates three new variables for each variable specified after the command <code class="language-plaintext highlighter-rouge">standard2</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>standard2 variable1 variable2
+</code></pre></div></div>
+<p>It will then create three new variables for each variable specified, e.g. for variable1: std2_variable1 (variable1 standardized by 2 std. dev.); mc_variable1 (variable1 mean centered); log_variable1=log(variable1+1)).</p>
+
+<p>The program can be downloaded as an stata ado file <a href="/assets/code/emdb.ado">here</a>. You will need to unpack the .zip and copy the ado into your stata ado file directory (find a how to do: here).</p>
 
   </article>
+
+  
 
 </div>
 
